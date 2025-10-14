@@ -1,0 +1,64 @@
+# TASK 7: Monkey–Banana Problem using Goal Stack Planning
+
+# -----------------------------
+# Operator Definitions
+# -----------------------------
+def move(subject, x1, x2):
+    return f"Move {subject} from {x1} to {x2}"
+
+def push_box(x1, x2):
+    return f"Push box from {x1} to {x2}"
+
+def climb_box(x, direction):
+    return f"Climb box at {x} {direction}"
+
+def have_banana(x):
+    return f"Have banana at {x}"
+
+# -----------------------------
+# Initial State
+# -----------------------------
+initial_state = {
+    'monkeyAt0': True,
+    'monkeyLevel': 'Down',
+    'bananaAt1': True,
+    'boxAt2': True
+}
+
+# -----------------------------
+# Goal State
+# -----------------------------
+goal_state = {
+    'GetBanana': True,
+    'at': 1
+}
+
+# -----------------------------
+# Planning Algorithm
+# -----------------------------
+def plan_actions(initial_state, goal_state):
+    actions = []
+
+    # Simple goal-based reasoning to achieve the target
+    if initial_state['monkeyAt0'] and initial_state['bananaAt1']:
+        # Move the monkey from position 0 to 1
+        actions.append(move('Monkey', 0, 1))
+        # Climb onto the box to reach the banana
+        actions.append(climb_box(1, 'Up'))
+        # Grab the banana at position 1
+        actions.append(have_banana(1))
+
+    return actions
+
+
+# -----------------------------
+# Execute the Planning Algorithm
+# -----------------------------
+actions = plan_actions(initial_state, goal_state)
+
+# -----------------------------
+# Output the Plan
+# -----------------------------
+print("Plan:")
+for action in actions:
+    print(action)
