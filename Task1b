@@ -1,0 +1,36 @@
+# Depth-First Search (DFS) in Python
+# -----------------------------------
+
+# Graph represented as an adjacency list (dictionary)
+graph = {
+    '5': ['3', '7'],
+    '3': ['2', '4'],
+    '7': ['8'],
+    '2': [],
+    '4': ['8'],
+    '8': []
+}
+
+# Set to keep track of visited nodes
+visited = set()
+
+def dfs(visited, graph, node):
+    """
+    Perform Depth-First Search (DFS) on a graph.
+
+    Parameters:
+    visited (set): Set of visited nodes
+    graph (dict): Graph represented as adjacency list
+    node (str): Current node
+    """
+    if node not in visited:
+        print(node)         # Process the node (here, printing it)
+        visited.add(node)   # Mark the node as visited
+        # Recur for all neighbors
+        for neighbour in graph[node]:
+            dfs(visited, graph, neighbour)
+
+# Driver code
+if _name_ == "_main_":
+    print("Following is the Depth-First Search starting from node 5:")
+    dfs(visited, graph, '5')
