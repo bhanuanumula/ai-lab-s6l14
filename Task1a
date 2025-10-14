@@ -1,0 +1,40 @@
+# Breadth-First Search (BFS) Traversal in Python
+# ----------------------------------------------
+
+# Graph represented using an adjacency list (dictionary)
+graph = {
+    '5': ['3', '7'],
+    '3': ['2', '4'],
+    '7': ['8'],
+    '2': [],
+    '4': ['8'],
+    '8': []
+}
+
+# List to keep track of visited nodes
+visited = []
+
+# Queue for BFS
+queue = []
+
+
+def bfs(visited, graph, start_node):
+    """Function to perform Breadth-First Search traversal."""
+    visited.append(start_node)
+    queue.append(start_node)
+
+    while queue:
+        # Dequeue a node from the queue
+        current_node = queue.pop(0)
+        print(current_node, end=" ")
+
+        # Visit all adjacent (neighbour) nodes
+        for neighbour in graph[current_node]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+
+
+# Driver Code
+print("Following is the Breadth-First Search traversal (starting from node 5):")
+bfs(visited, graph, '5')
